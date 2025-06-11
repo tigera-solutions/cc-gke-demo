@@ -15,7 +15,7 @@ echo
 
 # 1. Download the Online Boutique release manifest
 echo "⬇️  Downloading the latest Online Boutique manifest from Google..."
-curl -sSL -o /tmp/online-boutique.yaml https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/main/release/kubernetes-manifests.yaml
+curl -sSLf -o /tmp/online-boutique.yaml https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/main/release/kubernetes-manifests.yaml
 
 if [ $? -ne 0 ]; then
   echo "❌ Failed to download manifest. Check your internet connection."
