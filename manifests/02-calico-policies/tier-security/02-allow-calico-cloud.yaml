@@ -1,0 +1,17 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-calico-cloud
+  annotations:
+    tigera.io/tier: security
+spec:
+  selector: all()
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        # Use the FQDN for Calico Cloud backend or public endpoints
+        fqdn: ["*.calicocloud.io"]
+      ports: [443]
+  types:
+    - Egress

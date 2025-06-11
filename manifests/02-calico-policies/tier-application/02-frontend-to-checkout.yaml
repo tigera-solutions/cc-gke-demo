@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-to-checkout
+  namespace: default
+  annotations:
+    tigera.io/tier: application
+spec:
+  podSelector:
+    matchLabels:
+      app: checkoutservice
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend
+      ports:
+        - protocol: TCP
+          port: 5050
+  policyTypes:
+    - Ingress

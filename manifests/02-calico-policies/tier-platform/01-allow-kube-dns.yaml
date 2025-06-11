@@ -1,0 +1,17 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-kube-dns
+  annotations:
+    tigera.io/tier: platform
+spec:
+  selector: all()
+  egress:
+    - action: Allow
+      protocol: UDP
+      destination:
+        # Kubernetes DNS service
+        namespaceSelector: "kube-system"
+        ports: [53]
+  types:
+    - Egress

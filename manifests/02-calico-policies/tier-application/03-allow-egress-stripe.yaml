@@ -1,0 +1,16 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-egress-stripe
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: app == 'paymentservice'
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        fqdn: ["api.stripe.com"]
+      ports: [443]
+  types:
+    - Egress

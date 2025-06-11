@@ -1,0 +1,12 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: deny-all-ingress
+  annotations:
+    tigera.io/tier: platform
+spec:
+  selector: all()
+  ingress:
+    - action: Deny
+  types:
+    - Ingress

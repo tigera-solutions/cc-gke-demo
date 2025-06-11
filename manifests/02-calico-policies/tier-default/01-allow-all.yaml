@@ -1,0 +1,15 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-all
+  annotations:
+    tigera.io/tier: default
+spec:
+  selector: all()
+  ingress:
+    - action: Allow
+  egress:
+    - action: Allow
+  types:
+    - Ingress
+    - Egress
