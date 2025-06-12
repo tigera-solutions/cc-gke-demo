@@ -1,4 +1,6 @@
-![Calico Cloud Logo](../Calico_Cloud_logo.png)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="300"/>
+</p>
 
 # 🚀 Calico Cloud GKE PoC Quickstart
 
