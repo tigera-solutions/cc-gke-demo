@@ -71,6 +71,16 @@ This script walks you through logging in to Calico Cloud and running the install
 
 ---
 
+### 🧪 Deploy Your TestPod (Jumpbox)
+
+This pod lets you safely test connectivity from a controlled namespace.
+
+```bash
+bash scripts/03-deploy-testpod.sh
+```
+
+---
+
 ### 4️⃣ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
 
 Apply all policies tier by tier (recommended order):
