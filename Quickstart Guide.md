@@ -1,3 +1,5 @@
+![Calico Cloud Logo](../Calico_Cloud_logo.png)
+
 # 🚀 Calico Cloud GKE PoC Quickstart
 
 Welcome to the **Calico Cloud GKE Proof of Concept**!
@@ -9,12 +11,14 @@ This repo guides you (or your client!) through deploying [Online Boutique](https
 ## 📝 Table of Contents
 
 * [⚡ Prerequisites](./docs/01-prerequisites.md)
-* [🚀 Quickstart](#-quickstart)
-* [🔗 References](#-references)
-* [🛠️ Troubleshooting](./docs/02-troubleshooting.md)
-* [📊 Observability](./docs/03-observability.md)
-* [🧪 Validation & Testing](./validation/)
-* [🧹 Cleanup](#-cleanup)
+* [🏗️ Cluster Setup](#️-create-your-gke-cluster)
+* [🛒 Online Boutique App](#-deploy-online-boutique)
+* [☁️ Connect Calico Cloud](#️-connect-gke-to-calico-cloud)
+* [🧪 TestPod (Jumpbox)](#-deploy-your-testpod-jumpbox)
+* [🛡️ Network Policies](#-apply-network-policies)
+* [🔬 Policy Validation](#-validate--test-your-policies)
+* [👀 Observability](#-explore-observability--flowlogs)
+* [🧹 Cleanup](#-cleanup-resources)
 
 ---
 
@@ -24,13 +28,7 @@ Before you begin, make sure you’ve completed the [Prerequisites](./docs/01-pre
 
 ---
 
-## 🚀 Quickstart
-
-Follow these steps in order!
-
----
-
-### 1️⃣ Create Your GKE Cluster
+## 🏗️ Create Your GKE Cluster
 
 Clone this repo (if you haven’t already):
 
@@ -47,7 +45,7 @@ Create the GKE cluster (edit variables as needed):
 
 ---
 
-### 2️⃣ Deploy Online Boutique App
+## 🛒 Deploy Online Boutique
 
 Deploy the Online Boutique demo application:
 
@@ -59,7 +57,7 @@ Need help? [Online Boutique Guide](https://github.com/GoogleCloudPlatform/micros
 
 ---
 
-### 3️⃣ Connect GKE to Calico Cloud
+## ☁️ Connect GKE to Calico Cloud
 
 Run the guided connect script (manual step required):
 
@@ -71,7 +69,7 @@ This script walks you through logging in to Calico Cloud and running the install
 
 ---
 
-### 🧪 Deploy Your TestPod (Jumpbox)
+## 🧪 Deploy Your TestPod (Jumpbox)
 
 This pod lets you safely test connectivity from a controlled namespace.
 
@@ -81,7 +79,7 @@ bash scripts/03-deploy-testpod.sh
 
 ---
 
-### 4️⃣ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
+## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
 
 Apply all policies tier by tier (recommended order):
 
@@ -94,7 +92,7 @@ See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for polic
 
 ---
 
-### 5️⃣ Validate & Test Your Policies
+## 🔬 Validate & Test Your Policies
 
 Run automated tests or manual checks:
 
@@ -107,7 +105,7 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 
 ---
 
-### 6️⃣ Explore Observability & Flowlogs
+## 👀 Explore Observability & Flowlogs
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
 * [Observability Quickstart](./docs/03-observability.md)
@@ -115,7 +113,7 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 
 ---
 
-### 7️⃣ Cleanup Resources
+## 🧹 Cleanup Resources
 
 Tear down policies, app, and cluster to avoid costs:
 
