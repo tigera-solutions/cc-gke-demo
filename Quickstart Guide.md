@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="400"/>
-</p>
-
-<h1 align="center">🚀 Calico Cloud GKE PoC Starter Kit</h1>
+# 🚀 Calico Cloud GKE PoC Quickstart
 
 Welcome to the **Calico Cloud GKE Proof of Concept**!
 
@@ -30,12 +26,13 @@ Before you begin, make sure you’ve completed the [Prerequisites](./docs/01-pre
 
 ---
 
-## 🏗️ Create Your GKE Cluster
+## 🚀 Quickstart
 
-> ⚠️ **Important:**  
-> For Calico Cloud compatibility, this PoC requires your GKE cluster to be created with **Kubernetes version 1.31**.
-> The setup script will automatically use version `1.31`.  
-> Do **not** upgrade your cluster to a higher version unless [Calico documentation](https://docs.tigera.io/calico-cloud/get-started/gke) confirms compatibility.
+Follow these steps in order!
+
+---
+
+### 1️⃣ Create Your GKE Cluster
 
 Clone this repo (if you haven’t already):
 ...
@@ -77,7 +74,17 @@ This script walks you through logging in to Calico Cloud and running the install
 
 ---
 
-## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
+### 🧪 Deploy Your TestPod (Jumpbox)
+
+This pod lets you safely test connectivity from a controlled namespace.
+
+```bash
+bash scripts/03-deploy-testpod.sh
+```
+
+---
+
+### 4️⃣ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
 
 Apply all policies tier by tier (recommended order):
 
@@ -90,17 +97,7 @@ See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for polic
 
 ---
 
-## 🧪 Deploy Your TestPod (Jumpbox)
-
-This pod lets you safely test connectivity from a controlled namespace.
-
-```bash
-bash scripts/05-create-testpod.sh
-```
-
----
-
-## 🔬 Validate & Test Your Policies
+### 5️⃣ Validate & Test Your Policies
 
 Run automated tests or manual checks:
 
