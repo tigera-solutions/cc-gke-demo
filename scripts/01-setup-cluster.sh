@@ -16,6 +16,11 @@ REGION="us-central1"                     # <-- Use your preferred region (e.g., 
 NODE_COUNT=4                             # <-- 4-6 nodes recommended for PoC
 MACHINE_TYPE="n2-standard-4"             # <-- Change if you want a different node size
 
+# Prompt if the PROJECT_ID hasn't been updated from the default
+if [[ "$PROJECT_ID" == "your-gcp-project-id" ]]; then
+  read -p "Enter your actual GCP Project ID: " PROJECT_ID
+fi
+
 echo "---------------------------------------------"
 echo "Setting up your GKE cluster with Calico..."
 echo "Project:      $PROJECT_ID"
@@ -36,16 +41,17 @@ gcloud config set project "$PROJECT_ID"
 
 # 4. Create the GKE cluster with network policy enabled
 # -----------------------------------------------------
+echo "⚠️  NOTE: Cluster will be created with Kubernetes version 1.31 due to Calico compatibility."
 echo "🚀 Creating the GKE cluster (this may take a few minutes)..."
 gcloud container clusters create "$CLUSTER_NAME" \
   --project "$PROJECT_ID" \
   --region "$REGION" \
   --num-nodes "$NODE_COUNT" \
   --machine-type "$MACHINE_TYPE" \
-  --enable-network-policy \
   --release-channel "regular" \
-  --cluster-version "latest" \
+  --cluster-version "1.31" \
   --enable-ip-alias
+
 
 if [ $? -ne 0 ]; then
   echo "❌ Failed to create cluster. Please check your settings and permissions."

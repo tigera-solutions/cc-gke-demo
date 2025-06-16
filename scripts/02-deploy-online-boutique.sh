@@ -46,8 +46,16 @@ echo "🔎 Checking Online Boutique services and pods:"
 kubectl get svc
 kubectl get pods
 
-echo
-echo "🎉 Done! Online Boutique is now running on your GKE cluster."
-echo "👉 Find the frontend service's EXTERNAL-IP with:"
-echo "   kubectl get svc frontend-external"
-echo "   Then open http://<EXTERNAL-IP> in your browser."
+# Get External IP for frontend-external service
+EXTERNAL_IP=$(kubectl get svc frontend-external -o jsonpath='{.status.loadBalancer.ingress[0].ip}' 2>/dev/null)
+
+if [ -z "$EXTERNAL_IP" ]; then
+  echo "⏳ The EXTERNAL-IP for the frontend service is still pending."
+  echo "🔄 It may take a couple minutes for GKE to assign it."
+  echo "👉 Run this command in a few moments to check again:"
+  echo "   kubectl get svc frontend-external"
+  echo "🌐 Once you see an EXTERNAL-IP, open http://<EXTERNAL-IP> in your browser!"
+else
+  echo "🎉 Online Boutique is live! Open in your browser:"
+  echo "   http://$EXTERNAL_IP"
+fi

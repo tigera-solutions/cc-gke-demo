@@ -1,4 +1,8 @@
-# 🚀 Calico Cloud GKE PoC Quickstart
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="400"/>
+</p>
+
+<h1 align="center">🚀 Calico Cloud GKE PoC Starter Kit</h1>
 
 Welcome to the **Calico Cloud GKE Proof of Concept**!
 
@@ -9,12 +13,14 @@ This repo guides you (or your client!) through deploying [Online Boutique](https
 ## 📝 Table of Contents
 
 * [⚡ Prerequisites](./docs/01-prerequisites.md)
-* [🚀 Quickstart](#-quickstart)
-* [🔗 References](#-references)
-* [🛠️ Troubleshooting](./docs/02-troubleshooting.md)
-* [📊 Observability](./docs/03-observability.md)
-* [🧪 Validation & Testing](./validation/)
-* [🧹 Cleanup](#-cleanup)
+* [🏗️ Cluster Setup](#️-create-your-gke-cluster)
+* [🛒 Online Boutique App](#-deploy-online-boutique)
+* [☁️ Connect Calico Cloud](#️-connect-gke-to-calico-cloud)
+* [🧪 TestPod (Jumpbox)](#-deploy-your-testpod-jumpbox)
+* [🛡️ Network Policies](#-apply-network-policies)
+* [🔬 Policy Validation](#-validate--test-your-policies)
+* [👀 Observability](#-explore-observability--flowlogs)
+* [🧹 Cleanup](#-cleanup-resources)
 
 ---
 
@@ -24,77 +30,77 @@ Before you begin, make sure you’ve completed the [Prerequisites](./docs/01-pre
 
 ---
 
-## 🚀 Quickstart
+## 🏗️ Create Your GKE Cluster
 
-Follow these steps in order!
-
----
-
-### 1️⃣ Create Your GKE Cluster
+> ⚠️ **Important:**  
+> For Calico Cloud compatibility, this PoC requires your GKE cluster to be created with **Kubernetes version 1.31**.
+> The setup script will automatically use version `1.31`.  
+> Do **not** upgrade your cluster to a higher version unless [Calico documentation](https://docs.tigera.io/calico-cloud/get-started/gke) confirms compatibility.
 
 Clone this repo (if you haven’t already):
+...
 
 ```bash
-git clone https://github.com/YOUR-ORG/calico-cloud-gke-poc.git
-cd calico-cloud-gke-poc
+git clone https://github.com/tigera-solutions/cc-demo-gke.git
+cd cc-demo-gke
 ```
 
 Create the GKE cluster (edit variables as needed):
 
 ```bash
-./scripts/01-setup.sh
+./scripts/01-setup-cluster.sh
 ```
 
 ---
 
-### 2️⃣ Deploy Online Boutique App
+## 🛒 Deploy Online Boutique
 
 Deploy the Online Boutique demo application:
 
 ```bash
-kubectl apply -f manifests/01-online-boutique/
+./scripts/02-deploy-online-boutique.sh
 ```
 
 Need help? [Online Boutique Guide](https://github.com/GoogleCloudPlatform/microservices-demo#quickstart)
 
 ---
 
-### 3️⃣ Connect GKE to Calico Cloud
+## ☁️ Connect GKE to Calico Cloud
 
 Run the guided connect script (manual step required):
 
 ```bash
-./scripts/02-connect-calico-cloud.sh
+./scripts/03-connect-calico-cloud.sh
 ```
 
 This script walks you through logging in to Calico Cloud and running the install command.
 
 ---
 
-### 🧪 Deploy Your TestPod (Jumpbox)
-
-This pod lets you safely test connectivity from a controlled namespace.
-
-```bash
-bash scripts/03-deploy-testpod.sh
-```
-
----
-
-### 4️⃣ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
+## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
 
 Apply all policies tier by tier (recommended order):
 
 ```bash
-./scripts/02-apply-policies.sh
+./scripts/04-apply-policies.sh
 ```
 
 See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for policy YAMLs.
-[What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)
+[What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)---
 
 ---
 
-### 5️⃣ Validate & Test Your Policies
+## 🧪 Deploy Your TestPod (Jumpbox)
+
+This pod lets you safely test connectivity from a controlled namespace.
+
+```bash
+bash scripts/05-create-testpod.sh
+```
+
+---
+
+## 🔬 Validate & Test Your Policies
 
 Run automated tests or manual checks:
 
@@ -107,7 +113,7 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 
 ---
 
-### 6️⃣ Explore Observability & Flowlogs
+## 👀 Explore Observability & Flowlogs
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
 * [Observability Quickstart](./docs/03-observability.md)
@@ -115,12 +121,12 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 
 ---
 
-### 7️⃣ Cleanup Resources
+## 🧹 Cleanup Resources
 
 Tear down policies, app, and cluster to avoid costs:
 
 ```bash
-./scripts/03-cleanup.sh
+./scripts/99-cleanup-policies.sh
 ```
 
 ---
