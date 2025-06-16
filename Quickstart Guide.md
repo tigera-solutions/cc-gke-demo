@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="400"/>
+</p>
+
+<h1 align="center">🚀 Calico Cloud GKE PoC Starter Kit</h1>
+
 # 🚀 Calico Cloud GKE PoC Quickstart
 
 Welcome to the **Calico Cloud GKE Proof of Concept**!
