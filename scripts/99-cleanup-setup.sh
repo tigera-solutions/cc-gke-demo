@@ -53,12 +53,17 @@ echo ""
 # 4. Delete GKE Cluster
 echo -e "${RED}🚨 [WARNING] Deleting your GKE cluster is IRREVERSIBLE and removes ALL workloads.${RESET}"
 if prompt_yes_no "❓ Do you want to DELETE your GKE cluster as well? (y/n): "; then
-  echo -e "${YELLOW}🌩️ Deleting GKE cluster (customize CLUSTER_NAME, ZONE/REGION below)...${RESET}"
-  # --- CHANGE the following variables for your environment ---
-  CLUSTER_NAME="my-gke-cluster"      # <-- change me!
-  REGION="us-central1"               # <-- change me!
-  gcloud container clusters delete "$CLUSTER_NAME" --region "$REGION"
-  echo -e "${GREEN}✅ GKE cluster deleted.${RESET}"
+  # Prompt for cluster name and region
+  read -p "$(echo -e "${YELLOW}Enter your GKE cluster name: ${RESET}")" CLUSTER_NAME
+  read -p "$(echo -e "${YELLOW}Enter your GKE cluster region: ${RESET}")" REGION
+
+  echo -e "${RED}About to delete cluster '${CLUSTER_NAME}' in region '${REGION}'. This cannot be undone!${RESET}"
+  if prompt_yes_no "🚨 Are you ABSOLUTELY SURE you want to DELETE this GKE cluster? (y/n): "; then
+    gcloud container clusters delete "$CLUSTER_NAME" --region "$REGION"
+    echo -e "${GREEN}✅ GKE cluster deleted.${RESET}"
+  else
+    echo -e "${YELLOW}⏭️  Skipping GKE cluster deletion.${RESET}"
+  fi
 else
   echo -e "${YELLOW}⏭️  Skipping GKE cluster deletion.${RESET}"
 fi
