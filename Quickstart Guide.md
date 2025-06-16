@@ -135,7 +135,7 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 Tear down policies, app, and cluster to avoid costs:
 
 ```bash
-./scripts/99-cleanup-policies.sh
+./scripts/99-cleanup-setup.sh
 ```
 
 ---
