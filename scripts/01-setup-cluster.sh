@@ -18,7 +18,17 @@ MACHINE_TYPE="n2-standard-4"             # <-- Change if you want a different no
 
 # Prompt if the PROJECT_ID hasn't been updated from the default
 if [[ "$PROJECT_ID" == "your-gcp-project-id" ]]; then
-  read -p "Enter your actual GCP Project ID: " PROJECT_ID
+  read -p "Enter your actual GCP Project ID (e.g., my-gcp-project): " PROJECT_ID
+fi
+
+# Prompt if the CLUSTER_NAME is still the default
+if [[ "$CLUSTER_NAME" == "calico-demo-cluster" ]]; then
+  read -p "Enter your preferred GKE Cluster Name (e.g., calico-gke-demo): " CLUSTER_NAME
+fi
+
+# Prompt if the REGION is still the default
+if [[ "$REGION" == "us-central1" ]]; then
+  read -p "Enter your preferred GCP region (e.g., us-central1, us-west1, europe-west1): " REGION
 fi
 
 echo "---------------------------------------------"
