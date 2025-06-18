@@ -179,7 +179,7 @@ A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <co
 > **Need help or stuck anywhere?**
 >
 > * [Troubleshooting Guide](./02-troubleshooting.md)
-> * [FAQ](./faq.md)
+> * [FAQ](./04-faq.md)
 > * Or ping your friendly Calico Cloud Solutions Architect!
 
 ---
