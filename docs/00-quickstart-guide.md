@@ -149,7 +149,7 @@ A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <co
 ## 👀 Explore Observability & Flowlogs
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
-* [Observability Quickstart](./docs/03-observability.md)
+* [Observability Quickstart](./03-observability.md)
 * Want a deep dive? [Calico Cloud Docs](https://docs.tigera.io/calico-cloud/observability)
 
 ---
@@ -178,8 +178,8 @@ A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <co
 
 > **Need help or stuck anywhere?**
 >
-> * [Troubleshooting Guide](./docs/02-troubleshooting.md)
-> * [FAQ](./docs/faq.md)
+> * [Troubleshooting Guide](./02-troubleshooting.md)
+> * [FAQ](./faq.md)
 > * Or ping your friendly Calico Cloud Solutions Architect!
 
 ---
