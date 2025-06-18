@@ -101,6 +101,7 @@ chmod +x scripts/*.sh
 
 *This will show you open/allowed traffic between all pods/services by default.*
 
+→ [See what each test means (Full Test Scenarios Explained)](./validation/00-test-scenarios.md)
 ---
 
 ## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, etc)
@@ -110,7 +111,7 @@ chmod +x scripts/*.sh
 ```
 
 * Policies are organized by tier (security, platform, application, etc.) for real-world clarity.
-* See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for all policy YAMLs.
+* See [`manifests/02-calico-policies/`](./manifests/01-calico-policies/) for all policy YAMLs.
 * [What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)
 
 ---
@@ -125,6 +126,7 @@ chmod +x scripts/*.sh
 
 *Notice how segmentation, blocking, or FQDN rules now take effect!*
 
+→ [See what each test means (Full Test Scenarios Explained)](./validation/00-test-scenarios.md)
 ---
 
 ## 🔬 Deploy Your TestPod (Jumpbox)

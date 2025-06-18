@@ -44,7 +44,7 @@ Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have th
 
 ---
 
-**✅ All set? [Go to the Quickstart Guide!](./quickstart.md)**
+**✅ All set? [Go to the Quickstart Guide!](./docs/00-quickstart-guide.md)**
 
 ---
 

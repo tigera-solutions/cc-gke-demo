@@ -59,14 +59,14 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 ## 💡 Tips Before You Start
 
 * **Don’t get stuck:** There’s a [FAQ](./FAQ.md) and a [Troubleshooting](./docs/02-troubleshooting.md) page just for you!
-* **Need context?** See the [Knowledge Hub](./docs/references.md) for all official docs.
+* **Need context?** See the [Knowledge Hub](./docs/05-references.md) for all official docs.
 * **Ready to go?** You’ll find a big “Get Started” button below.
 
 ---
 
 <div align="center">
 
-[![Start the Demo](https://img.shields.io/badge/🚦%20START%20THE%20DEMO-ff6f00?style=for-the-badge&logo=googlecloud&logoColor=white)](./docs/Quickstart-Guide.md)
+[![Start the Demo](https://img.shields.io/badge/🚦%20START%20THE%20DEMO-ff6f00?style=for-the-badge&logo=googlecloud&logoColor=white)](./docs/00-quickstart-guide.md)
 
 </div>
 
@@ -74,9 +74,9 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 
 ## ❓ Have Questions or Felt Stuck?
 
-* Browse the [FAQ](./FAQ.md)
+* Browse the [FAQ](./04-faq.md)
 * Check [Troubleshooting](./docs/02-troubleshooting.md)
-* Want to learn more? Dive into the [References / Knowledge Hub](./docs/references.md)
+* Want to learn more? Dive into the [References / Knowledge Hub](./docs/05-references.md)
 * Or [open an issue](https://github.com/tigera-solutions/cc-demo-gke/issues) for help!
 
 ---
