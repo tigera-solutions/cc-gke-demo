@@ -1,0 +1,17 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-frontend-to-checkout
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: app == "checkoutservice"
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: app == "frontend"
+      destination:
+        ports: [5050]
+  types:
+    - Ingress

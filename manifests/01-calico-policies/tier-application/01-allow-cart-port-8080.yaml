@@ -1,16 +1,15 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: allow-egress-stripe
+  name: allow-cart-port-8080
   annotations:
     tigera.io/tier: application
 spec:
-  selector: app == 'paymentservice'
-  egress:
+  selector: app == "cartservice"
+  ingress:
     - action: Allow
       protocol: TCP
       destination:
-        domains: ["api.stripe.com"]
-        ports: [443]
+        ports: [8080]
   types:
-    - Egress
+    - Ingress

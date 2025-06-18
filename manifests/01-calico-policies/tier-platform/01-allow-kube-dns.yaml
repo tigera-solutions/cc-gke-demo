@@ -10,8 +10,7 @@ spec:
     - action: Allow
       protocol: UDP
       destination:
-        # Kubernetes DNS service
-        namespaceSelector: "kube-system"
+        selector: "k8s-app == 'kube-dns'"
         ports: [53]
   types:
     - Egress

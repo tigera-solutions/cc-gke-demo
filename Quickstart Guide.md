@@ -1,60 +1,69 @@
+<h1 align="center" style="font-size:2.5em">🚀 Calico Cloud GKE PoC Quickstart Guide</h1>
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="400"/>
+  <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="350"/>
 </p>
 
-<h1 align="center">🚀 Calico Cloud GKE PoC Starter Kit</h1>
+<p align="center"><b>🚀 Calico Cloud: Unify, Simplify, and Secure—now in under an hour!</b></p>
+---
 
-Welcome to the **Calico Cloud GKE Proof of Concept**!
-
-This repo guides you (or your client!) through deploying [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo) on GKE, integrating with Calico Cloud, and demoing real-world security features—**step by step, no guesswork**.
+> 🏆 **Ready to Learn Unified Network Security in Under an Hour?** <br>
+> This interactive demo kit guides you (or your customer!) through deploying Online Boutique on GKE, connecting to Calico Cloud, and experiencing microsegmentation, egress controls, FQDN, and observability—**step by step, with zero guesswork**.
 
 ---
 
 ## 📝 Table of Contents
 
-* [⚡ Prerequisites](./docs/01-prerequisites.md)
-* [🏗️ Cluster Setup](#️-create-your-gke-cluster)
-* [🛒 Online Boutique App](#-deploy-online-boutique)
-* [☁️ Connect Calico Cloud](#️-connect-gke-to-calico-cloud)
-* [🧪 TestPod (Jumpbox)](#-deploy-your-testpod-jumpbox)
-* [🛡️ Network Policies](#-apply-network-policies)
-* [🔬 Policy Validation](#-validate--test-your-policies)
-* [👀 Observability](#-explore-observability--flowlogs)
-* [🧹 Cleanup](#-cleanup-resources)
+* [⚡ Prerequisites](#prerequisites)
+* [🏗️ Cluster Setup](#create-your-gke-cluster)
+* [🛒 Online Boutique App](#deploy-online-boutique)
+* [☁️ Connect Calico Cloud](#connect-gke-to-calico-cloud)
+* [🧪 Policy Validation: BEFORE](#validate-connectivity-before-policies)
+* [🛡️ Apply Network Policies](#apply-network-policies)
+* [🧪 Policy Validation: AFTER](#validate-connectivity-after-policies)
+* [🔬 TestPod (Jumpbox)](#deploy-your-testpod-jumpbox)
+* [👀 Observability](#explore-observability--flowlogs)
+* [🧹 Cleanup](#cleanup-resources)
+* [🔗 References](#references)
+* [💡 FAQ & Support](#faq--support)
 
 ---
 
 ## ⚡ Prerequisites
 
-Before you begin, make sure you’ve completed the [Prerequisites](./docs/01-prerequisites.md).
+* A Google Cloud account with GKE enabled ([Free Tier works](https://cloud.google.com/free/))
+* A Calico Cloud Account ([Free Tier works](https://www.calicocloud.io/home))
+* 45–60 minutes of focus!
+* Basic comfort with the command line (no prior GKE/Calico experience needed!)
+* \~\$5–\$10 Google Cloud budget (Free credits work!)
+
+> ℹ️ **Tip:** Never used GKE? [Google's Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) has your back!
 
 ---
 
 ## 🏗️ Create Your GKE Cluster
 
-> ⚠️ **Important:**  
+> ⚠️ **Important:**
 > For Calico Cloud compatibility, this PoC requires your GKE cluster to be created with **Kubernetes version 1.31**.
-> The setup script will automatically use version `1.31`.  
+> The setup script will automatically use version `1.31`.
 > Do **not** upgrade your cluster to a higher version unless [Calico documentation](https://docs.tigera.io/calico-cloud/get-started/gke) confirms compatibility.
 
-Clone this repo (if you haven’t already):
-...
+**Clone the repo:**
 
 ```bash
 git clone https://github.com/tigera-solutions/cc-demo-gke.git
 cd cc-demo-gke
 ```
-> ⚠️ **Don’t skip this!**
->
-> After cloning, make the demo scripts executable—otherwise, you’ll see permission errors.
->
-> ```bash
-> chmod +x scripts/*.sh
-> ```
->
-> 💡 *You only need to do this once after cloning!*
 
-Create the GKE cluster (edit variables as needed):
+**Make demo scripts executable:**
+
+```bash
+chmod +x scripts/*.sh
+```
+
+> 💡 *Run this once after cloning so you avoid permission errors!*
+
+**Create the GKE cluster:**
 
 ```bash
 ./scripts/01-setup-cluster.sh
@@ -64,61 +73,74 @@ Create the GKE cluster (edit variables as needed):
 
 ## 🛒 Deploy Online Boutique
 
-Deploy the Online Boutique demo application:
-
 ```bash
 ./scripts/02-deploy-online-boutique.sh
 ```
 
-Need help? [Online Boutique Guide](https://github.com/GoogleCloudPlatform/microservices-demo#quickstart)
+> Need help? [Online Boutique Guide](https://github.com/GoogleCloudPlatform/microservices-demo#quickstart)
 
 ---
 
 ## ☁️ Connect GKE to Calico Cloud
 
-Run the guided connect script (manual step required):
-
 ```bash
 ./scripts/03-connect-calico-cloud.sh
 ```
 
-This script walks you through logging in to Calico Cloud and running the install command.
+> This script walks you through logging in to Calico Cloud and running the install command.
 
 ---
 
-## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, Ports, etc)
+## 🧪 Validate Connectivity BEFORE Policies
 
-Apply all policies tier by tier (recommended order):
+> 🟠 **Run this before you apply network policies!**
 
 ```bash
-./scripts/04-apply-policies.sh
+./validation/01-test-policies.sh
 ```
 
-See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for policy YAMLs.
-[What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)---
+*This will show you open/allowed traffic between all pods/services by default.*
 
 ---
 
-## 🧪 Deploy Your TestPod (Jumpbox)
-
-This pod lets you safely test connectivity from a controlled namespace.
+## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, etc)
 
 ```bash
-bash scripts/05-create-testpod.sh
+./scripts/05-apply-policies.sh
 ```
+
+* Policies are organized by tier (security, platform, application, etc.) for real-world clarity.
+* See [`manifests/02-calico-policies/`](./manifests/02-calico-policies/) for all policy YAMLs.
+* [What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)
 
 ---
 
-## 🔬 Validate & Test Your Policies
+## 🧪 Validate Connectivity AFTER Policies
 
-Run automated tests or manual checks:
+> 🟢 **Run the validation again!**
 
 ```bash
-./validation/02-test-policies.sh
+./validation/01-test-policies.sh
 ```
 
-Or follow the manual walkthrough in [`validation/01-test-scenarios.md`](./validation/01-test-scenarios.md)
-Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect live status.
+*Notice how segmentation, blocking, or FQDN rules now take effect!*
+
+---
+
+## 🔬 Deploy Your TestPod (Jumpbox)
+
+<details>
+<summary><b>What’s the TestPod?</b></summary>
+<p>
+A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <code>curl</code>, or <code>ping</code> without affecting app workloads. Perfect for validating policy enforcement hands-on.
+</p>
+</details>
+
+```bash
+./scripts/06-create-testpod.sh
+```
+
+> 💡 Tip: Use <code>kubectl exec -it testpod -n testpod -- bash</code> to open a shell and play around.
 
 ---
 
@@ -132,11 +154,11 @@ Use `kubectl get pods -A`, `kubectl describe networkpolicy -A`, etc. to inspect 
 
 ## 🧹 Cleanup Resources
 
-Tear down policies, app, and cluster to avoid costs:
-
 ```bash
-./scripts/99-cleanup-setup.sh
+./scripts/99-cleanup-all.sh
 ```
+
+*Interactive prompts let you delete policies, testpod, Online Boutique, and finally your GKE cluster—step by step!*
 
 ---
 
@@ -150,7 +172,12 @@ Tear down policies, app, and cluster to avoid costs:
 
 ---
 
-## 💡 Questions?
+## 💡 FAQ & Support
 
-* Check [Troubleshooting](./docs/02-troubleshooting.md)
-* Or reach out to your Calico Cloud Solutions Architect! 😄
+> **Need help or stuck anywhere?**
+>
+> * [Troubleshooting Guide](./docs/02-troubleshooting.md)
+> * [FAQ](./docs/faq.md)
+> * Or ping your friendly Calico Cloud Solutions Architect!
+
+---

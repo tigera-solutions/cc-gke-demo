@@ -1,0 +1,16 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: block-egress-google
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: all()  # or target a specific app/namespace
+  egress:
+    - action: Deny
+      protocol: TCP
+      destination:
+        domains: ["google.com"]
+        ports: [443]
+  types:
+    - Egress

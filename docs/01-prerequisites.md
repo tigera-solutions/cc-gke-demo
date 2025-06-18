@@ -1,35 +1,38 @@
 # ⚡ Prerequisites
 
-Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have the following ready to ensure a smooth experience. If you run into any blockers, check our [Troubleshooting Guide](./troubleshooting.md) or reach out!
+Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have the following ready for a smooth, frustration-free experience.
+
+> 🆓 **Tip:** New to Google Cloud? [Sign up here](https://cloud.google.com/free/) for $300 in free credits—plenty for this PoC!
 
 ---
 
 ## ☁️ GKE Cluster Requirements
-- **GKE Version:** v1.28+ ([Supported versions](https://docs.tigera.io/calico-cloud/get-started/gke))
-- **Nodes:** 4–6 x `n2-standard-4` (or equivalent)
-- **Network Policy:** Must be enabled at cluster creation (see [GKE Network Policy](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy))
-- **Region:** Your preferred GCP region
+- **GKE Version:** v1.28 or newer ([See supported versions](https://docs.tigera.io/calico-cloud/get-started/gke))
+- **Nodes:** 4–6 × `n2-standard-4` (or equivalent)
+- **Network Policy:** Enable *at cluster creation* ([Guide](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy))
+- **Region:** Any (choose closest to you for lowest latency)
 
 ---
 
 ## 🖥️ Local Machine Requirements
-- `kubectl` v1.28+ ([Install guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
-- `helm` v3+ ([Install guide](https://helm.sh/docs/intro/install/))
-- Access to your GCP project with cluster-admin permissions
-- Modern web browser (for Calico Cloud UI)
+- `kubectl` v1.28+ ([Install](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
+- `helm` v3+ ([Install](https://helm.sh/docs/intro/install/))
+- GCP IAM with cluster-admin privileges
+- 🖥️ Modern web browser (Chrome/Edge recommended for Calico Cloud UI)
 
 ---
 
 ## 🔐 Permissions Needed
-- GCP project **Owner** or equivalent permissions
-- Ability to create and manage GKE clusters and service accounts
-- [Calico Cloud](https://calicocloud.tigera.io) account (sign up if you don’t have one!)
+- GCP **Project Owner** (or equivalent)
+- Rights to create GKE clusters & service accounts
+- [Calico Cloud account](https://calicocloud.tigera.io) ([Sign up here](https://calicocloud.tigera.io))
 
 ---
 
 ## 💸 Estimated Cost
-- Typical demo: ~$30–$50 for 1–2 days of testing (depends on region/node type)
-- Clean up resources after testing to avoid unwanted charges!
+- Most demos cost **$5–$10** (with free credits)
+- Extended: Up to **$30–$50** for 1–2 days (depends on region/nodes)
+- > **Don’t forget to clean up!** Run the cleanup script at the end to avoid charges.
 
 ---
 
@@ -41,4 +44,8 @@ Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have th
 
 ---
 
-**You’re ready to go! Next: head to the [🚀 Quickstart Guide](./quickstart.md) to deploy your demo cluster.**
+**✅ All set? [Go to the Quickstart Guide!](./quickstart.md)**
+
+---
+
+*If you hit a snag, [see Troubleshooting](./troubleshooting.md) or drop us a line!*
