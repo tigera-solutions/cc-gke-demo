@@ -14,18 +14,18 @@
 
 ## 📝 Table of Contents
 
-* [⚡ Prerequisites](#prerequisites)
-* [🏗️ Cluster Setup](#create-your-gke-cluster)
-* [🛒 Online Boutique App](#deploy-online-boutique)
-* [☁️ Connect Calico Cloud](#connect-gke-to-calico-cloud)
-* [🧪 Policy Validation: BEFORE](#validate-connectivity-before-policies)
-* [🛡️ Apply Network Policies](#apply-network-policies)
-* [🧪 Policy Validation: AFTER](#validate-connectivity-after-policies)
-* [🔬 TestPod (Jumpbox)](#deploy-your-testpod-jumpbox)
-* [👀 Observability](#explore-observability--flowlogs)
-* [🧹 Cleanup](#cleanup-resources)
-* [🔗 References](#references)
-* [💡 FAQ & Support](#faq--support)
+* [Prerequisites](#prerequisites)
+* [Create Your GKE Cluster](#create-your-gke-cluster)
+* [Deploy Online Boutique](#deploy-online-boutique)
+* [Connect GKE to Calico Cloud](#connect-gke-to-calico-cloud)
+* [Validate Connectivity BEFORE Policies](#validate-connectivity-before-policies)
+* [Apply Network Policies](#apply-network-policies)
+* [Validate Connectivity AFTER Policies](#validate-connectivity-after-policies)
+* [Deploy Your TestPod (Jumpbox)](#deploy-your-testpod-jumpbox)
+* [Explore Observability & Flowlogs](#explore-observability--flowlogs)
+* [Cleanup Resources](#cleanup-resources)
+* [References](#references)
+* [FAQ & Support](#faq--support)
 
 ---
 
