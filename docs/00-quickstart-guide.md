@@ -5,7 +5,7 @@
 </p>
 
 <p align="center"><b>🚀 Calico Cloud: Unify, Simplify, and Secure—now in under an hour!</b></p>
----
+
 
 > 🏆 **Ready to Learn Unified Network Security in Under an Hour?** <br>
 > This interactive demo kit guides you (or your customer!) through deploying Online Boutique on GKE, connecting to Calico Cloud, and experiencing microsegmentation, egress controls, FQDN, and observability—**step by step, with zero guesswork**.
@@ -39,6 +39,9 @@
 
 > ℹ️ **Tip:** Never used GKE? [Google's Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) has your back!
 
+---
+> 📋 **Full Prerequisites & Checklist:**  
+> Don’t miss the [detailed guide here.](./docs/01-prerequisites.md)
 ---
 
 ## 🏗️ Create Your GKE Cluster
@@ -101,7 +104,8 @@ chmod +x scripts/*.sh
 
 *This will show you open/allowed traffic between all pods/services by default.*
 
-→ [See what each test means (Full Test Scenarios Explained)](./validation/00-test-scenarios.md)
+> ℹ️  **Want to learn more?**  
+> See [Full Test Scenarios Explained](./validation/00-test-scenarios.md) for details on each validation step.
 ---
 
 ## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, etc)
@@ -126,7 +130,8 @@ chmod +x scripts/*.sh
 
 *Notice how segmentation, blocking, or FQDN rules now take effect!*
 
-→ [See what each test means (Full Test Scenarios Explained)](./validation/00-test-scenarios.md)
+> ℹ️  **Want to learn more?**  
+> See [Full Test Scenarios Explained](./validation/00-test-scenarios.md) for details on each validation step.
 ---
 
 ## 🔬 Deploy Your TestPod (Jumpbox)
