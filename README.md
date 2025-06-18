@@ -60,13 +60,19 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 
 * **Don’t get stuck:** There’s a [FAQ](./FAQ.md) and a [Troubleshooting](./docs/02-troubleshooting.md) page just for you!
 * **Need context?** See the [Knowledge Hub](./docs/05-references.md) for all official docs.
-* **Ready to go?** You’ll find a big “Get Started” button below.
+* **Ready to go?** You’ll find a big calico button below.
 
 ---
 
 <div align="center">
 
-[![Start the Demo](https://img.shields.io/badge/🚦%20START%20THE%20DEMO-ff6f00?style=for-the-badge&logo=googlecloud&logoColor=white)](./docs/00-quickstart-guide.md)
+<h2><strong>Click me to get started ⤵️ </strong></h2>
+
+<a href="./docs/00-quickstart-guide.md">
+  <img src="https://github.com/user-attachments/assets/10abf4b7-1125-4d1b-9918-08eb2a664583"
+       alt="Start the Calico Cloud Demo"
+       width="170"/>
+</a>
 
 </div>
 
