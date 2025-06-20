@@ -58,7 +58,7 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 
 ## 💡 Tips Before You Start
 
-* **Don’t get stuck:** There’s a [FAQ](./FAQ.md) and a [Troubleshooting](./docs/02-troubleshooting.md) page just for you!
+* **Don’t get stuck:** There’s a [FAQ](./docs/04.faq.md) and a [Troubleshooting](./docs/02-troubleshooting.md) page just for you!
 * **Need context?** See the [Knowledge Hub](./docs/05-references.md) for all official docs.
 * **Ready to go?** You’ll find a big calico button below.
 
