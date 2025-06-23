@@ -69,14 +69,15 @@
 **Clone the repo:**
 
 ```bash
-git clone https://github.com/tigera-solutions/cc-demo-gke.git
-cd cc-demo-gke
+git clone https://github.com/tigera-solutions/cc-gke-demo.git
+cd cc-gke-demo
 ```
 
 **Make demo scripts executable:**
 
 ```bash
 chmod +x scripts/*.sh
+chmod +x validation/*.sh
 ```
 
 > 💡 *Run this once after cloning so you avoid permission errors!*
@@ -114,7 +115,7 @@ chmod +x scripts/*.sh
 > 🟠 **Run this before you apply network policies!**
 
 ```bash
-./validation/01-test-policies.sh
+./validation/01-validation.sh
 ```
 
 *This will show you open/allowed traffic between all pods/services by default.*
@@ -140,7 +141,7 @@ chmod +x scripts/*.sh
 > 🟢 **Run the validation again!**
 
 ```bash
-./validation/01-test-policies.sh
+./validation/01-validation.sh
 ```
 
 *Notice how segmentation, blocking, or FQDN rules now take effect!*
