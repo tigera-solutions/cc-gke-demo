@@ -44,6 +44,21 @@
 > Don’t miss the [detailed guide here.](./docs/01-prerequisites.md)
 ---
 
+> 🖥️ **How to Run the Demo Commands**
+>
+> **👍 Easiest (Recommended):**  
+> Use [Google Cloud Shell](https://cloud.google.com/shell) — click the terminal icon at the top right in your GCP Console.  
+> *No install, no config required! All tools (kubectl, gcloud, helm) are ready to go.*
+>
+> **Or, Use Your Local Terminal:**  
+> - Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), [gcloud CLI](https://cloud.google.com/sdk/docs/install), and [helm](https://helm.sh/docs/intro/install/)
+> - Authenticate your terminal with `gcloud auth login`  
+> - Make sure you’re using the right GCP project (`gcloud config set project YOUR_PROJECT_ID`)
+>
+> 👉 **Pro Tip:**  
+> Most people can finish this demo *entirely* in Google Cloud Shell—even on a Chromebook or iPad!
+
+---
 ## 🏗️ Create Your GKE Cluster
 
 > ⚠️ **Important:**
