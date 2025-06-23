@@ -80,7 +80,7 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 
 ## ❓ Have Questions or Felt Stuck?
 
-* Browse the [FAQ](./doc/04-faq.md)
+* Browse the [FAQ](./docs/04-faq.md)
 * Check [Troubleshooting](./docs/02-troubleshooting.md)
 * Want to learn more? Dive into the [References / Knowledge Hub](./docs/05-references.md)
 * Or [open an issue](https://github.com/tigera-solutions/cc-demo-gke/issues) for help!
