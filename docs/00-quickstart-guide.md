@@ -43,7 +43,7 @@
 ---
 
 > 📋 **Full Prerequisites & Checklist:**
-> Don’t miss the [detailed guide here.](./docs/01-prerequisites.md)
+> Don’t miss the [detailed guide here.](./01-prerequisites.md)
 
 ---
 
@@ -138,7 +138,7 @@ Create the GKE cluster:
 
 * Policies are organized by tier (security, platform, application) for clarity.
 * See [`manifests/01-calico-policies/`](../manifests/01-calico-policies/) for all policy YAMLs.
-* [What are tiers?](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)
+* [What are tiers?](https://docs.tigera.io/calico-cloud/network-policy/policy-tiers/)
 
 ---
 
@@ -160,7 +160,7 @@ Create the GKE cluster:
 ## 👀 Explore Observability & Flowlogs
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
-* [Observability Quickstart](./docs/03-observability.md)
+* [Observability Quickstart](./03-observability.md)
 * Want a deep dive? [Calico Cloud Docs](https://docs.tigera.io/calico-cloud/observability)
 
 ---
@@ -177,8 +177,8 @@ Create the GKE cluster:
 
 ## 🔗 References
 
-* [Calico Cloud GKE Quickstart](https://docs.tigera.io/calico-cloud/get-started/gke)
-* [Network Policy Tiers](https://docs.tigera.io/calico/latest/network-policy/tiered-policy)
+* [Calico Cloud Quickstart](https://docs.tigera.io/calico-cloud/about/)
+* [Network Policy Tiers](https://docs.tigera.io/calico-cloud/network-policy/policy-tiers/)
 * [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo)
 * [Calico Cloud Documentation](https://docs.tigera.io/calico-cloud)
 * [GKE Network Policy](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy)
@@ -189,8 +189,8 @@ Create the GKE cluster:
 
 > **Need help or stuck anywhere?**
 >
-> * [Troubleshooting Guide](./docs/02-troubleshooting.md)
-> * [FAQ](./docs/04-faq.md)
+> * [Troubleshooting Guide](./02-troubleshooting.md)
+> * [FAQ](./04-faq.md)
 > * Or ping your friendly Calico Cloud Solutions Architect!
 
 ---
