@@ -1,0 +1,17 @@
+# Allow outbound HTTPS traffic from online-boutique pods to github.com (example FQDN allow).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-egress-github
+  annotations:
+    tigera.io/tier: security
+spec:
+  selector: projectcalico.org/name == 'online-boutique'
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        domains: ["github.com"]
+        ports: [443]
+  types:
+    - Egress

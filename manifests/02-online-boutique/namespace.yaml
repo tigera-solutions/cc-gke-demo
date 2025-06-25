@@ -1,0 +1,7 @@
+# Creates the 'online-boutique' namespace for the demo app
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: online-boutique
+  labels:
+    name: online-boutique

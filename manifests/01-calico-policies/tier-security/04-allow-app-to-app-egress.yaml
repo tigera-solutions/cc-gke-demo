@@ -1,0 +1,17 @@
+# Allow HTTP communication between frontend and productcatalogservice pods (service-to-service microsegmentation).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-frontend-to-productcatalog
+  annotations:
+    tigera.io/tier: security
+spec:
+  selector: app == 'frontend'
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'productcatalogservice'
+        ports: [3550]
+  types:
+    - Egress

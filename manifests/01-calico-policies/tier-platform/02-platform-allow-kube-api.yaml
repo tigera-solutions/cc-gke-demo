@@ -1,16 +1,17 @@
+# Allows all pods to access the Kubernetes API server (used by apps or for health checks).
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: allow-kube-dns
+  name: allow-kube-api
   annotations:
     tigera.io/tier: platform
 spec:
   selector: all()
   egress:
     - action: Allow
-      protocol: UDP
+      protocol: TCP
       destination:
-        selector: "k8s-app == 'kube-dns'"
-        ports: [53]
+        selector: "k8s-app == 'kubernetes'"
+        ports: [443]
   types:
     - Egress

@@ -2,50 +2,47 @@
 
 Welcome to your Calico Cloud GKE **Policy Test Suite!**
 
-These test scenarios map directly to the `02-test-policies.sh` script and are designed to help you understand what’s being validated, why it matters, and what each result means for your environment.
+These scenarios directly map to your `01-validation.sh` script.  
+**Run them before and after applying your Calico policies** to experience the “wow!” effect of Kubernetes-native segmentation, egress control, and application security.
 
 ---
 
 ## 🏁 How to Run These Tests
 
-1. Deploy the TestPod (`netshoot` or `busybox`) using the provided script.
-2. Get a shell inside the pod using `kubectl exec` (or run from your own machine if desired).
-3. Run the `02-test-policies.sh` validation script.
+1. Open your terminal (Cloud Shell or local with `kubectl` access).
+2. Ensure your Online Boutique app is running in the `online-boutique` namespace.
+3. Copy and run the `validation/01-validation.sh` script from your project root.
 4. Watch for ✅ (PASS) or ⛔ (FAIL) for each check.
 
 ---
 
 ## 🔍 Test Scenarios Explained
 
-| Test # | Scenario                             | Command                                                                               | Expected Result                 | What It Proves                            |
-| ------ | ------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------- |
-| 1      | DNS Lookup (FQDN/egress DNS policy)  | `dig +short google.com`                                                               | PASS if DNS egress allowed      | Platform/Network DNS policy works         |
-| 2      | HTTP Egress to Internet              | `curl -s --max-time 5 https://google.com`                                             | PASS if internet egress allowed | Egress policy working                     |
-| 3      | ICMP Ping                            | `ping -c 1 -W 1 8.8.8.8`                                                              | FAIL unless ICMP is allowed     | ICMP/egress policy scope                  |
-| 4      | LoadGen → Frontend                   | `curl -s --max-time 2 http://frontend:8080/`                                          | PASS if app policy allows       | Service-to-service microseg               |
-| 5      | Frontend → ProductCatalogService     | `curl -s --max-time 2 http://productcatalogservice:3550/products`                     | PASS if app policy allows       | App-to-app microseg allowed               |
-| 6      | TestPod → Online Boutique Frontend   | `curl -s --max-time 2 http://frontend.online-boutique.svc.cluster.local:8080/`        | FAIL if microseg working        | Namespace/label-based segmentation        |
-| 7      | FQDN Egress (GitHub)                 | `curl -s --max-time 5 https://www.github.com`                                         | PASS/FAIL based on FQDN policy  | FQDN policy enforcement                   |
-| 8      | Port-based Deny Test (to Google:443) | `curl -s --max-time 5 https://google.com:443`                                         | PASS/FAIL per port policy       | Port-based policy test                    |
-| 9      | TestPod → PaymentService             | `curl -s --max-time 2 http://paymentservice.online-boutique.svc.cluster.local:50051/` | FAIL if default deny            | Deny by default—unintended access blocked |
+| Test # | Scenario                                       | Command                                                                                                         | Expected Result                    | What It Proves                                 |
+|--------|------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-------------------------------------|------------------------------------------------|
+| 1      | DNS Lookup from LoadGenerator                  | `kubectl exec -n online-boutique deploy/loadgenerator -- nslookup google.com`                                   | PASS if DNS egress allowed         | Platform/Network DNS policy enforcement         |
+| 2      | LoadGen → Frontend (service-to-service)        | `kubectl exec -n online-boutique deploy/loadgenerator -- curl -s --max-time 2 http://frontend:8080/`            | PASS if app policy allows           | Microsegmentation—service-to-service allowed    |
+| 3      | Frontend → ProductCatalogService               | `kubectl exec -n online-boutique deploy/frontend -- curl -s --max-time 2 http://productcatalogservice:3550/products` | PASS if app policy allows      | App-to-app microsegmentation                    |
+| 4      | PaymentService → Redis (should be blocked)     | `kubectl exec -n online-boutique deploy/paymentservice -- curl -s --max-time 2 redis-cart:6379`                 | FAIL if policy is enforced          | Zero Trust: default-deny/block between services |
+| 5      | PaymentService egress to GitHub (FQDN)         | `kubectl exec -n online-boutique deploy/paymentservice -- curl -s --max-time 5 https://github.com`               | PASS if FQDN egress allowed         | Egress control—allow to specific external FQDN  |
 
 ---
 
 ## 💡 Tips & Best Practices
 
-* **Run these tests before and after you apply your policies** to see real-time enforcement!
-* Use `kubectl get networkpolicy -A` to list active policies across namespaces.
-* You can test from any app pod (try from different namespaces for microsegmentation validation).
-* Update or add tests based on your unique application flows or compliance requirements.
+- **Run these tests _before and after_ you apply your policies**—you’ll see the difference immediately!
+- Use `kubectl get networkpolicy,globalnetworkpolicy -A` to see active policies.
+- Each test ties directly to a policy YAML in `manifests/01-calico-policies/`.
+- Want to expand your validation? Add your own service-to-service or egress checks using `kubectl exec`.
 
 ---
 
 ## 🧑‍💻 Next Steps
 
-* If you see unexpected FAILs or PASSes, check the matching policy YAMLs in `manifests/02-calico-policies/`.
-* [Calico Policy Docs](https://docs.tigera.io/calico/latest/network-policy/)
-* Reach out in your team chat or to a Solutions Architect for help!
+- Unexpected results? Double-check the matching policy YAMLs and pod names.
+- Read more: [Calico Network Policy Docs](https://docs.tigera.io/calico/latest/network-policy/)
+- Need a hand? Ping your Solutions Architect or team Slack channel.
 
 ---
 
-Enjoy exploring the power of Calico Cloud network policies! 🚀
+Enjoy discovering real security with Calico Cloud—**in minutes, not hours!** 🚀

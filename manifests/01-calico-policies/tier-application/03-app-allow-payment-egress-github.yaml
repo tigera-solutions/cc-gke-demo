@@ -1,0 +1,17 @@
+# Allows paymentservice pods to reach github.com:443 (shows FQDN egress; can change to any public domain for demo).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-payment-egress-github
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: app == 'paymentservice'
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        domains: ["github.com"]
+        ports: [443]
+  types:
+    - Egress

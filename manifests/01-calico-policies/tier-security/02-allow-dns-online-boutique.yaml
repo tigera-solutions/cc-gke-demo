@@ -1,11 +1,12 @@
+# Allow pods in the online-boutique namespace to send DNS queries (UDP 53) so they can resolve external names.
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: allow-dns
+  name: allow-dns-online-boutique
   annotations:
     tigera.io/tier: security
 spec:
-  selector: all()
+  selector: projectcalico.org/name == 'online-boutique'
   egress:
     - action: Allow
       protocol: UDP

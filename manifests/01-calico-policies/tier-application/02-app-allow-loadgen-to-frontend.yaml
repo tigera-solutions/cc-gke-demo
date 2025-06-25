@@ -1,15 +1,17 @@
+# Allows only loadgenerator pods to access frontend service.
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: allow-cart-port-8080
+  name: allow-loadgen-to-frontend
   annotations:
     tigera.io/tier: application
 spec:
-  selector: app == "cartservice"
-  ingress:
+  selector: app == 'loadgenerator'
+  egress:
     - action: Allow
       protocol: TCP
       destination:
+        selector: app == 'frontend'
         ports: [8080]
   types:
-    - Ingress
+    - Egress

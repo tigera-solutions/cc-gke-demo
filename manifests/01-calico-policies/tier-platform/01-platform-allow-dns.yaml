@@ -1,0 +1,17 @@
+# Allows all pods to resolve DNS (required for app and Kubernetes communication).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-dns
+  annotations:
+    tigera.io/tier: platform
+spec:
+  selector: all()
+  egress:
+    - action: Allow
+      protocol: UDP
+      destination:
+        selector: "k8s-app == 'kube-dns'"
+        ports: [53]
+  types:
+    - Egress

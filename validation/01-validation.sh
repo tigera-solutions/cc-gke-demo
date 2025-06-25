@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# 🚦 Calico Cloud GKE Policy Validation Suite
-# Run *inside* your testpod (netshoot/busybox/curl), or use 'kubectl exec' from your machine.
-#
-# Example: kubectl exec -it testpod -n testpod -- /bin/bash
+# 🚦 Calico Cloud GKE Policy Validation Suite (Demo)
+# Run this *from your local terminal or Cloud Shell*—no testpod required!
+# Requires: kubectl access to your cluster
 
 YELLOW='\033[1;33m'
 RED='\033[1;31m'
@@ -25,54 +24,33 @@ function test_cmd() {
   echo ""
 }
 
-echo -e "${YELLOW}=== 🚦 Calico Cloud Tiered Network Policy Test Suite ===${RESET}"
-echo -e "🧪 *Run this from your test pod (e.g., netshoot in testpod namespace) or any app pod for microseg testing*"
+echo -e "${YELLOW}=== 🚦 Calico Cloud Policy Test Suite (Demo) ===${RESET}"
 echo ""
 
-# 1. DNS Lookup (FQDN/egress DNS policy)
-test_cmd "DNS Lookup (dig google.com)" \
-  "dig +short google.com" \
-  "Platform/Network DNS egress allow"
+# 1. DNS Lookup (should always PASS if DNS is allowed)
+test_cmd "DNS Lookup (nslookup google.com from loadgenerator pod)" \
+  "kubectl exec -n online-boutique deploy/loadgenerator -- nslookup google.com" \
+  "Platform: DNS Allow"
 
-# 2. HTTP to Internet (egress policy)
-test_cmd "HTTP Egress to Internet (curl https://google.com)" \
-  "curl -s --max-time 5 https://google.com" \
-  "Should PASS only if egress to Internet allowed"
+# 2. Service-to-Service: LoadGen → Frontend
+test_cmd "LoadGenerator to Frontend (curl frontend:8080 from loadgenerator)" \
+  "kubectl exec -n online-boutique deploy/loadgenerator -- curl -s --max-time 2 http://frontend:8080/" \
+  "Application: LoadGen→Frontend Allow"
 
-# 3. ICMP Ping (optional egress)
-test_cmd "ICMP Ping (ping 8.8.8.8)" \
-  "ping -c 1 -W 1 8.8.8.8" \
-  "Should FAIL unless ICMP explicitly allowed"
+# 3. Service-to-Service: Frontend → ProductCatalogService
+test_cmd "Frontend to ProductCatalogService (curl productcatalogservice:3550 from frontend)" \
+  "kubectl exec -n online-boutique deploy/frontend -- curl -s --max-time 2 http://productcatalogservice:3550/products" \
+  "Application: Frontend→ProductCatalog Allow"
 
-# 4. Service-to-Service: LoadGen → Frontend
-test_cmd "LoadGenerator to Frontend (curl frontend:8080)" \
-  "curl -s --max-time 2 http://frontend:8080/" \
-  "Should PASS if allowed by app policy"
+# 4. Service-to-Service: PaymentService → Redis (should FAIL if blocked)
+test_cmd "PaymentService to Redis (curl redis-cart:6379 from paymentservice)" \
+  "kubectl exec -n online-boutique deploy/paymentservice -- curl -s --max-time 2 redis-cart:6379" \
+  "Application: Payment→Redis Block"
 
-# 5. Service-to-Service: Frontend → ProductCatalogService
-test_cmd "Frontend to ProductCatalogService (curl productcatalogservice:3550)" \
-  "curl -s --max-time 2 http://productcatalogservice:3550/products" \
-  "Should PASS if app-to-app allowed"
+# 5. Egress: PaymentService → GitHub (should PASS if allowed)
+test_cmd "PaymentService egress to GitHub (curl https://github.com from paymentservice)" \
+  "kubectl exec -n online-boutique deploy/paymentservice -- curl -s --max-time 5 https://github.com" \
+  "Application: Payment→GitHub Allow"
 
-# 6. Namespace Isolation: TestPod → Online Boutique Frontend
-test_cmd "TestPod → Online Boutique Frontend (curl frontend.online-boutique.svc.cluster.local:8080)" \
-  "curl -s --max-time 2 http://frontend.online-boutique.svc.cluster.local:8080/" \
-  "Should FAIL if microsegmentation is working"
-
-# 7. FQDN Test: Only allow/deny specific external FQDNs (if policy applied)
-test_cmd "FQDN Egress (curl https://www.github.com)" \
-  "curl -s --max-time 5 https://www.github.com" \
-  "Should PASS/FAIL based on FQDN policy"
-
-# 8. Port-based Deny Test (if you have specific port denies)
-test_cmd "Port 443 to Google (curl https://google.com:443)" \
-  "curl -s --max-time 5 https://google.com:443" \
-  "Should PASS/FAIL based on port policy"
-
-# 9. Blocked Test: Unrelated Pod → PaymentService (should FAIL)
-test_cmd "TestPod → PaymentService (curl paymentservice.online-boutique.svc.cluster.local:50051)" \
-  "curl -s --max-time 2 http://paymentservice.online-boutique.svc.cluster.local:50051/" \
-  "Should FAIL if default deny in place"
-
-echo -e "${YELLOW}=== Test complete! Review PASS/FAIL for your segmentation, FQDN, and egress controls. ===${RESET}"
-echo -e "📝 Tip: Run before and after applying policies for instant feedback!"
+echo -e "${YELLOW}=== Test complete! Review PASS/FAIL to verify your segmentation & egress policies. ===${RESET}"
+echo -e "📝 Tip: Run before and after applying policies for instant wow!"

@@ -1,0 +1,17 @@
+# Allows only frontend pods to access productcatalogservice (microsegmentation example).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-frontend-to-productcatalog
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: app == 'frontend'
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        selector: app == 'productcatalogservice'
+        ports: [3550]
+  types:
+    - Egress

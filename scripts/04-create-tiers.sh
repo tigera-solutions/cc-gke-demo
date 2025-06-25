@@ -25,8 +25,6 @@ spec:
     security) echo 0 ;;
     platform) echo 10 ;;
     application) echo 20 ;;
-    testpod) echo 30 ;;
-    default) echo 100 ;;
     *) echo 999 ;;
   esac)
 EOF

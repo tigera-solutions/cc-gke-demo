@@ -150,23 +150,6 @@ chmod +x validation/*.sh
 > See [Full Test Scenarios Explained](./validation/00-test-scenarios.md) for details on each validation step.
 ---
 
-## 🔬 Deploy Your TestPod (Jumpbox)
-
-<details>
-<summary><b>What’s the TestPod?</b></summary>
-<p>
-A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <code>curl</code>, or <code>ping</code> without affecting app workloads. Perfect for validating policy enforcement hands-on.
-</p>
-</details>
-
-```bash
-./scripts/06-create-testpod.sh
-```
-
-> 💡 Tip: Use <code>kubectl exec -it testpod -n testpod -- bash</code> to open a shell and play around.
-
----
-
 ## 👀 Explore Observability & Flowlogs
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
@@ -181,7 +164,7 @@ A "jumpbox" pod in its own namespace to let you safely run <code>dig</code>, <co
 ./scripts/99-cleanup-all.sh
 ```
 
-*Interactive prompts let you delete policies, testpod, Online Boutique, and finally your GKE cluster—step by step!*
+*Interactive prompts let you delete policies, Online Boutique, and finally your GKE cluster—step by step!*
 
 ---
 

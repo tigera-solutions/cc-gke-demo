@@ -1,0 +1,17 @@
+# Deny paymentservice pods from accessing redis-cart (negative microseg test).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: block-paymentservice-from-redis
+  annotations:
+    tigera.io/tier: application
+spec:
+  selector: app == 'paymentservice'
+  egress:
+    - action: Deny
+      protocol: TCP
+      destination:
+        selector: app == 'redis-cart'
+        ports: [6379]
+  types:
+    - Egress

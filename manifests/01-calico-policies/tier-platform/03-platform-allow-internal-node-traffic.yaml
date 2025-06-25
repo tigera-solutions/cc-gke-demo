@@ -1,0 +1,15 @@
+# Allows all node-to-node traffic (required for cluster health, communication between system pods).
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-internal-node-traffic
+  annotations:
+    tigera.io/tier: platform
+spec:
+  selector: all()
+  egress:
+    - action: Allow
+      destination:
+        selector: "all()"
+  types:
+    - Egress
