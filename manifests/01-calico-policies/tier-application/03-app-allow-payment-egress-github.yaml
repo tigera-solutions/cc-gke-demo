@@ -4,7 +4,7 @@ kind: GlobalNetworkPolicy
 metadata:
   name: allow-payment-egress-github
   annotations:
-    tigera.io/tier: application
+    tier:: application
 spec:
   selector: app == 'paymentservice'
   egress:

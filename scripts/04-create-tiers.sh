@@ -10,8 +10,8 @@ RESET='\033[0m'
 echo -e "${CYAN}🐾 [Calico Cloud Demo] Let's create your Calico Policy Tiers!${RESET}"
 echo -e "${YELLOW}---${RESET}"
 
-# Define the tiers in desired order of precedence
-TIERS=("security" "platform" "application" "testpod" "default")
+# Define the tiers in desired order of precedence (do NOT include 'default')
+TIERS=("security" "platform" "application")
 
 for TIER in "${TIERS[@]}"; do
   echo -e "${CYAN}🎯 Creating Calico Tier: ${TIER}...${RESET}"
@@ -25,7 +25,7 @@ spec:
     security) echo 0 ;;
     platform) echo 10 ;;
     application) echo 20 ;;
-    *) echo 999 ;;
+    # default tier intentionally omitted!
   esac)
 EOF
   if [ $? -eq 0 ]; then

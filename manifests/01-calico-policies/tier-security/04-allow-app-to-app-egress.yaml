@@ -4,7 +4,7 @@ kind: GlobalNetworkPolicy
 metadata:
   name: allow-frontend-to-productcatalog
   annotations:
-    tigera.io/tier: security
+    tier:: security
 spec:
   selector: app == 'frontend'
   egress:

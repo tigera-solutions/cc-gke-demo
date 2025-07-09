@@ -4,7 +4,7 @@ kind: GlobalNetworkPolicy
 metadata:
   name: block-paymentservice-from-redis
   annotations:
-    tigera.io/tier: application
+    tier:: application
 spec:
   selector: app == 'paymentservice'
   egress:

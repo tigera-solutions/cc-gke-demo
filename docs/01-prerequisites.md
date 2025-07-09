@@ -25,7 +25,7 @@ Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have th
 ## 🔐 Permissions Needed
 - GCP **Project Owner** (or equivalent)
 - Rights to create GKE clusters & service accounts
-- [Calico Cloud account](https://calicocloud.tigera.io) ([Sign up here](https://calicocloud.tigera.io))
+- [Calico Cloud account]([Sign up here](https://calicocloud.io))
 
 ---
 
@@ -44,8 +44,8 @@ Welcome! Before starting your Calico Cloud GKE PoC, please make sure you have th
 
 ---
 
-**✅ All set? [Go to the Quickstart Guide!](./docs/00-quickstart-guide.md)**
+**✅ All set? [Go to the Quickstart Guide!](./00-quickstart-guide.md)**
 
 ---
 
-*If you hit a snag, [see Troubleshooting](./troubleshooting.md) or drop us a line!*
+*If you hit a snag, [see Troubleshooting](./02-troubleshooting.md) or drop us a line!*

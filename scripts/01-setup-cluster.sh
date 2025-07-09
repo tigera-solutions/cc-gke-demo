@@ -14,7 +14,7 @@ while [[ -z "${CLUSTER_NAME:-}" || "$CLUSTER_NAME" == "calico-demo-cluster" ]]; 
   read -p "$(echo -e "${YELLOW}🧩 Enter a name for your GKE cluster (e.g., calico-gke-demo): ${RESET}")" CLUSTER_NAME
 done
 
-while [[ -z "${REGION:-}" || "$REGION" == "us-central1" ]]; do
+while [[ -z "${REGION:-}" ]]; do
   read -p "$(echo -e "${YELLOW}🌎 Enter your preferred GCP region (e.g., us-central1, us-west1, europe-west1): ${RESET}")" REGION
 done
 

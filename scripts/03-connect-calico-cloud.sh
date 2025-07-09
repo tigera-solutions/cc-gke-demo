@@ -6,7 +6,7 @@ echo "🚀 [Step 3] Connect your GKE cluster to Calico Cloud"
 echo "---------------------------------------------------------------"
 
 echo "Step 1: Sign up for Calico Cloud (if you haven't already)"
-echo "👉 Go to: https://calicocloud.tigera.io/"
+echo "👉 Go to: https://calicocloud.io/"
 echo "    - Use your business email to start a free trial."
 echo "    - Complete email verification & login."
 

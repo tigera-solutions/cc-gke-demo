@@ -43,8 +43,8 @@ A **click-by-click, copy/paste guide** to experience modern Kubernetes security,
 
 ## 🏆 What You’ll Need
 
-* A Google Cloud account with GKE enabled (Free Tier works!)
-* A Calico Cloud account (Get free access here)
+* A Google Cloud account with GKE enabled ([Free Tier works](https://cloud.google.com/free/))
+* A Calico Cloud account ([Free Tier works](https://www.calicocloud.io/home))
 * 45–60 minutes of focus (You’ll be done before your next coffee break!)
 * Basic comfort with the command line
 * (No prior GKE or Calico experience required—copy/paste is encouraged!)

@@ -4,7 +4,7 @@ kind: GlobalNetworkPolicy
 metadata:
   name: allow-loadgen-to-frontend
   annotations:
-    tigera.io/tier: application
+    tier:: application
 spec:
   selector: app == 'loadgenerator'
   egress:
