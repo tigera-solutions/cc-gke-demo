@@ -1,4 +1,6 @@
-# 🚀 Calico Cloud GKE PoC Quickstart Guide
+<h1 align="center">🚀 Calico Cloud GKE PoC Quickstart Guide</h1>
+
+---
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/a994de07-0a3b-479d-b7be-9fd393252a74" alt="Calico_Cloud_logo" width="350"/>
@@ -13,7 +15,7 @@
 
 ---
 
-## 📝 Table of Contents
+## Table of Contents
 
 * [Prerequisites](#prerequisites)
 * [How to Run the Demo Commands](#how-to-run-the-demo-commands)
@@ -23,14 +25,14 @@
 * [Validate Connectivity BEFORE Policies](#validate-connectivity-before-policies)
 * [Apply Network Policies](#apply-network-policies)
 * [Validate Connectivity AFTER Policies](#validate-connectivity-after-policies)
-* [Explore Observability & Flowlogs](#explore-observability--flowlogs)
+* [Explore Observability and Flowlogs](#explore-observability-and-flowlogs)
 * [Cleanup Resources](#cleanup-resources)
 * [References](#references)
-* [FAQ & Support](#faq--support)
+* [FAQ and Support](#faq-and-support)
 
 ---
 
-## ⚡ Prerequisites
+## Prerequisites ⚡
 
 * A Google Cloud account with GKE enabled ([Free Tier works](https://cloud.google.com/free/))
 * A Calico Cloud account ([Free Tier works](https://www.calicocloud.io/home))
@@ -40,18 +42,16 @@
 
 > ℹ️ **Tip:** Never used GKE? [Google's Quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart) has your back!
 
----
-
 > 📋 **Full Prerequisites & Checklist:**
 > Don’t miss the [detailed guide here.](./01-prerequisites.md)
 
 ---
 
-## 🖥️ How to Run the Demo Commands
+## How to Run the Demo Commands 🖥️
 
 **👍 Easiest (Recommended):**
 Use [Google Cloud Shell](https://cloud.google.com/shell) — just click the terminal icon at the top right in your GCP Console.
-*All required tools (`kubectl`, `gcloud`, `helm`) are pre-installed—no config, no hassle!*
+*All required tools (**`kubectl`**, **`gcloud`**, **`helm`**) are pre-installed—no config, no hassle!*
 
 **Or, Use Your Local Terminal:**
 
@@ -64,7 +64,7 @@ Use [Google Cloud Shell](https://cloud.google.com/shell) — just click the term
 
 ---
 
-## 🏗️ Create Your GKE Cluster
+## Create Your GKE Cluster 🏗️
 
 > ⚠️ **Important:**
 > For Calico Cloud compatibility, this PoC requires your GKE cluster to be created with **Kubernetes version 1.31**.
@@ -95,7 +95,7 @@ Create the GKE cluster:
 
 ---
 
-## 🛒 Deploy Online Boutique
+## Deploy Online Boutique 🛒
 
 ```bash
 ./scripts/02-deploy-online-boutique.sh
@@ -105,7 +105,7 @@ Create the GKE cluster:
 
 ---
 
-## ☁️ Connect GKE to Calico Cloud
+## Connect GKE to Calico Cloud ☁️
 
 ```bash
 ./scripts/03-connect-calico-cloud.sh
@@ -115,7 +115,7 @@ Create the GKE cluster:
 
 ---
 
-## 🧪 Validate Connectivity BEFORE Policies
+## Validate Connectivity BEFORE Policies 🧪
 
 > 🟠 **Run this before you apply network policies!**
 
@@ -130,7 +130,7 @@ Create the GKE cluster:
 
 ---
 
-## 🛡️ Apply Network Policies (Microsegmentation, Egress, FQDN, etc)
+## Apply Network Policies 🛡️
 
 ```bash
 ./scripts/05-apply-policies.sh
@@ -142,7 +142,7 @@ Create the GKE cluster:
 
 ---
 
-## 🧪 Validate Connectivity AFTER Policies
+## Validate Connectivity AFTER Policies 🧪
 
 > 🟢 **Run the validation again!**
 
@@ -157,7 +157,7 @@ Create the GKE cluster:
 
 ---
 
-## 👀 Explore Observability & Flowlogs
+## Explore Observability and Flowlogs 👀
 
 * View Flowlogs, service graphs, and more in the Calico Cloud UI!
 * [Observability Quickstart](./03-observability.md)
@@ -165,7 +165,7 @@ Create the GKE cluster:
 
 ---
 
-## 🧹 Cleanup Resources
+## Cleanup Resources 🧹
 
 ```bash
 ./scripts/99-cleanup-all.sh
@@ -175,7 +175,7 @@ Create the GKE cluster:
 
 ---
 
-## 🔗 References
+## References 🔗
 
 * [Calico Cloud Quickstart](https://docs.tigera.io/calico-cloud/about/)
 * [Network Policy Tiers](https://docs.tigera.io/calico-cloud/network-policy/policy-tiers/)
@@ -185,7 +185,7 @@ Create the GKE cluster:
 
 ---
 
-## 💡 FAQ & Support
+## FAQ and Support 💡
 
 > **Need help or stuck anywhere?**
 >
